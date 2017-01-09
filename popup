@@ -1,0 +1,17 @@
+#!/bin/bash
+
+BG="#21211F"
+FG="#B8B9B4"
+BCOL="#353535"
+FONT="-kakwa-kakwafont-medium-r-normal--12-120-72-72-c-60-iso8859-1"
+BORDER="5"
+
+W=120
+H=20
+X=20
+Y=20
+
+#ADD ALL THE THINGS
+OPT="-g ${W}x${H}+${X}+${Y} -R ${BCOL} -r ${BORDER} -B ${BG} -F ${FG} -f ${FONT}"
+
+echo "$1" | lemonbar $OPT &
