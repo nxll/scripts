@@ -1,15 +1,36 @@
 #!/bin/bash
 #BACKUP DOTFILES TO GITHUB
 
-CMD="cp -r"
+CPH="cp -r $HOME" 
 GITDIR="$HOME/.git/dotfiles"
 
-#COPY FILES
-$CMD $HOME/.zshrc $GITDIR/
-$CMD $HOME/.vimrc $GITDIR/
-$CMD $HOME/.vim/colors/fray.vim $GITDIR/.vim/colors/
-$CMD $HOME/.interrobangrc $GITDIR/
-$CMD $HOME/
+#README
+$CPH/tmp/README.md $GITDIR/
+
+#CONFIGS
+$CPH/.zshrc $GITDIR/
+$CPH/.vimrc $GITDIR/
+$CPH/.interrobangrc $GITDIR/
+$CPH/.tmux.conf $GITDIR/
+$CPH/.xinitrc $GITDIR/
+$CPH/.Xresources $GITDIR/
+$CPH/.compton.conf $GITDIR/
+$CPH/.zlogin $GITDIR/
+
+#OUTSIDE OF $HOME
+$CPH/.vim/colors/fray.vim $GITDIR/.vim/colors/
+$CPH/.ncmpcpp/config $GITDIR/.ncmpcpp/
+$CPH/.weechat/weechat.conf $GITDIR/.weechat/
+
+$CPH/.config/dunst/ $GITDIR/.config/
+$CPH/.config/herbstluftwm/ $GITDIR/.config/
+$CPH/.config/zenbu/ $GITDIR/.config/
+$CPH/.config/mpd/mpd.conf $GITDIR/.config/mpd/
+$CPH/.config/mpv/ $GITDIR/.config/
+$CPH/.config/zathura/ $GITDIR/.config/
+$CPH/.config/vis/config $GITDIR/.config/vis/
+$CPH/.config/vis/colors/mono.scheme $GITDIR/.config/vis/colors/
+$CPH/.config/user-dirs.dirs $GITDIR/.config/
 
 #PUSH
 cd $GITDIR
