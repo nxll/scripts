@@ -25,13 +25,13 @@ case "$1" in
 		+append -filter Cubic \
 		-distort SRT 60 \
 		-blur 0x40 \
-		/tmp/csws.png
+		/tmp/wall.png
 
-		hsetroot -fill /tmp/csws.png -brightness 0.1
+		hsetroot -fill /tmp/wall.png -brightness 0.1
 	;;
 	"-striped")
 		#STRIPES
-		convert -size 100x100 \
+		convert -size 350x350 \
 		xc:"#2E2E2C" \
 		xc:"#C6C7C2" \
 		xc:"#C2FA11" \
@@ -43,9 +43,9 @@ case "$1" in
 		\( -clone 0--1 -clone 0--1 \) \
 		+append -filter Cubic \
 		-distort SRT 60 \
-		/tmp/spws.png
+		/tmp/wall.png
 
-		hsetroot -fill /tmp/spws.png -brightness 0.1
+		hsetroot -fill /tmp/wall.png -brightness 0.1
 	;;
 	"-4color")
 		#4 COLOR GRADIENT
@@ -54,9 +54,9 @@ case "$1" in
 		-filter point -interpolate catrom \
 		-define distort:viewport=100x100 \
 		-distort Affine '.5,.5 .5,.5   1.5,1.5 99.5,99.5' \
-		/tmp/sgws.png
+		/tmp/wall.png
 
-		hsetroot -fill /tmp/sgws.png -brightness 0.1
+		hsetroot -fill /tmp/wall.png -brightness 0.1
 	;;
 	*)
 		#FALLBACK IF NOTHING IS CHOSEN

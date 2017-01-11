@@ -109,7 +109,8 @@ main ()
 	esac
 
 	# Reload Wallpaper
-	$HOME/bin/ws -wallpaper
+	#$HOME/bin/ws -wallpaper
+	$HOME/bin/tt -f $HOME/images/tiles/otis-redding.png
 
 	# tmux
 	# Reload tmux colors

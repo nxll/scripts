@@ -1,0 +1,407 @@
+#!/bin/sh
+# Set the theme for the tty from a simple file format
+
+#  normal  bold
+#    0      8    black
+#    1      9    red
+#    2      A    green
+#    3      B    orange
+#    4      C    blue
+#    5      D    magenta
+#    6      E    cyan
+#    7      F    white
+
+THEMES='
+
+alien
+
+0 000910
+1 ccccbb
+2 aaddbb
+3 aaddaa
+4 aacccc
+5 bbbbcc
+6 aaddcc
+7 cceedd
+8 aaccbb
+9 ddddcc
+A bbeecc
+B cceebb
+C bbdddd
+D ccccdd
+E bbeedd
+F fff0f8
+
+coal
+
+0 000000
+1 ee3333
+2 88ff44
+3 ffcc55
+4 77aaaa
+5 85678f
+6 55ee99
+7 cccccc
+8 555555
+9 ff6666
+A aaff66
+B ffff99
+C aaddff
+D b294bb
+E 99ffbb
+F ffffff
+
+coldlava
+
+0 4b5269
+1 d8686d
+2 918eb3
+3 ebc6a1
+4 b84e46
+5 875f87
+6 f77c6c
+7 f2c2a5
+8 57607a
+9 ed7278
+A a19ec7
+B ffd7af
+C cc564e
+D 9c6d9c
+E ff806f
+F fdcbac
+
+drakula
+
+0 282a36
+1 cc4343
+2 42c763
+3 ffb86c
+4 6272a4
+5 bd93f9
+6 6fb9c9
+7 e6e6d5
+8 888db4
+9 ff5555
+A 50fa7b
+B f1fa8c
+C 8196d6
+D ff79c6
+E 8be9fd
+F ffffff
+
+exo
+
+0 350600
+1 e62828
+2 77b23e
+3 d6722e
+4 689db3
+5 936599
+6 30c87e
+7 acf88d
+8 9b6963
+9 ff5454
+A a0d669
+B ff9e5d
+C 94dfff
+D 9b78ce
+E 77ffbd
+F ffffff
+
+fray
+
+0 161718
+1 e8e2e2
+2 aadb0f
+3 2e3233
+4 e2e2e2
+5 91ba0d
+6 b2b2b2
+7 d6d0d0
+8 191a1c
+9 fcfcfc
+A baf010
+B 404647
+C f7f7f7
+D a1cf0e
+E c7c7c7
+F dbdbdb
+
+ghost
+
+0 000000
+1 91265C
+2 439a64
+3 ccdd66
+4 55aaaa
+5 516583
+6 4a8f86
+7 99bbbb
+8 334444
+9 E71E5B
+A 72f4a0
+B f5ff8B
+C 99bbff
+D 676cb0
+E 00ffff
+F ffffff
+
+gotham
+
+0 0a0f14
+1 c33027
+2 26a98b
+3 edb54c
+4 195465
+5 4e5165
+6 33859d
+7 98d1ce
+8 406068
+9 d26939
+A 30dbb3
+B ffd280
+C 268099
+D 888ba5
+E 599caa
+F d3ebe9
+
+gruvbox
+
+0 282828
+1 cc241d
+2 98971a
+3 d79921
+4 458588
+5 b16286
+6 689d6a
+7 d5c4a1
+8 928374
+9 fb4934
+A b8bb26
+B fabd2f
+C 83a598
+D d2869b
+E 8ec07c
+F ffffff
+
+hotline
+
+0 002930
+1 e00146
+2 088064
+3 aa623d
+4 0b3440
+5 6a152e
+6 043c3b
+7 faeee2
+8 00323b
+9 f5014d
+A 099474
+B bf6e45
+C 0e4454
+D 801937
+E 055250
+F fff3e7
+
+matrix
+
+0 000000
+1 883300
+2 00aa55
+3 55aa33
+4 339977
+5 668877
+6 119977
+7 77dd77
+8 338833
+9 aa7733
+A 00ff88
+B 88ee66
+C 33dd88
+D 77bb99
+E 66ddbb
+F ddffdd
+
+monokai
+
+0 48483e
+1 dc2566
+2 8fc029
+3 d4c96e
+4 55bcce
+5 9358fe
+6 56b7a5
+7 acada1
+8 76715e
+9 fa2772
+A a7e22e
+B e7db75
+C 66d9ee
+D ae82ff
+E 66efd5
+F dfe1d3
+
+nature
+
+0 33312b
+1 bec35c
+2 707746
+3 a09f73
+4 909a49
+5 65794a
+6 837e5e
+7 d1cab1
+8 38362f
+9 c7cc60
+A 7a824d
+B abaa7b
+C 99a34d
+D 6e7351
+E 8c8765
+F d6cfb5
+
+pink
+
+0 090a0f
+1 f44444
+2 28684f
+3 c8907e
+4 422d52
+5 710130
+6 2a7e86
+7 bbbbbb
+8 3e4053
+9 f44444
+A 43c291
+B f49a7e
+C 542a52
+D 9e0f37
+E 688e95
+F ffffff
+
+r982
+
+0 262624 
+1 939490
+2 5e5e5c
+3 b6b8b3
+4 727370
+5 d1d1cb
+6 636361
+7 aaaba6
+8 262624 
+9 c6c7c2
+A c2ffa1
+B 90918e
+C d4d6d0
+D f0f0e9
+E 82827f
+F c8c9c4
+
+solarized-dark
+
+0 002b36
+1 dc322f
+2 859900
+3 b58900
+4 268bd2
+5 6c71c4
+6 2aa198
+7 93a1a1
+8 657b83
+9 dc322f
+A 859900
+B b58900
+C 268bd2
+D 6c71c4
+E 2aa198
+F fdf6e3
+
+solarized-light
+
+0 ffddbb
+1 d0154b
+2 779900
+3 ffa700
+4 096daf
+5 dd6699
+6 00aa88
+7 000000
+8 bb9988
+9 d0154b
+A 779900
+B ffa700
+C 096daf
+D 897f74
+E 00aa88
+F 222222
+
+zenburn
+
+0 191d1b
+1 9C6363
+2 60b48a
+3 dfaf8f
+4 506070
+5 dc8cc3
+6 8cd0d3
+7 dcdccc
+8 709080
+9 dca3a3
+A bfebbf
+B f0dfaf
+C 94bff3
+D ec93d3
+E 93e0e3
+F ffffff
+'
+
+
+theme()
+{
+	local number="$1" show=0 i=0
+
+	printf '\033[H\033[J'
+
+	while read -r color hex
+	do
+		if [ "$hex" ]
+		then
+			printf '\033]P%s%s' "$color" "$hex"
+			show=1
+		elif [ "$color" ]
+		then
+			name="$color"
+		elif [ "$show" -eq 1 ]
+		then
+			i=$((i + 1))
+
+			printf '\033[K%3s %-20s' "$i" "$name"
+			for c in 0 1 2 3 4 5 6 7
+			do
+				printf ' \033[3%sm___\033[1m___\033[m' "$c"
+			done
+			printf '\n\033[K\n'
+
+			show=0
+		fi
+
+		[ "$number" ] && [ "$i" -ge "$number" ] && return 0
+	done << EOF
+$THEMES
+EOF
+}
+
+
+if [ -z "$1" ]
+then
+	theme
+	printf '\033]P0000000\033]P7aaaaaa\033[J\n Theme number: '
+	read number
+else
+	number="$1"
+fi
+
+
+theme "$number"
+printf '\033[J'

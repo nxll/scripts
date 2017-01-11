@@ -1,7 +1,7 @@
 #!/bin/bash
 #BACKUP DOTFILES TO GITHUB
 
-CPH="cp -r $HOME" 
+CPH="cp -r $HOME"
 GITDIR="$HOME/.git/dotfiles"
 
 #README
@@ -24,6 +24,7 @@ $CPH/.weechat/weechat.conf $GITDIR/.weechat/
 
 $CPH/.config/dunst/ $GITDIR/.config/
 $CPH/.config/herbstluftwm/ $GITDIR/.config/
+rm -rf $HOME/.config/zenbu/__pycache__
 $CPH/.config/zenbu/ $GITDIR/.config/
 $CPH/.config/mpd/mpd.conf $GITDIR/.config/mpd/
 $CPH/.config/mpv/ $GITDIR/.config/
