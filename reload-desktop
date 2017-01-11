@@ -110,7 +110,7 @@ main ()
 
 	# Reload Wallpaper
 	#$HOME/bin/ws -wallpaper
-	$HOME/bin/tt -f $HOME/images/tiles/otis-redding.png
+	$HOME/bin/tt $HOME/images/tiles/gplay.png
 
 	# tmux
 	# Reload tmux colors
