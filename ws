@@ -5,23 +5,23 @@
 case "$1" in
 	"-wallpaper")
 		#TYPICAL WALLPAPER
-		hsetroot -fill $HOME/images/wallpapers/mountains_bw.png -blur 0
+		hsetroot -fill $HOME/images/wallpapers/forest-meadow-leaves-autumn.jpg -blur 2
 	;;
 	"-solid")
 		#SOLID BOLD BLACK COLOR
-		hsetroot -solid "#3A404A"
+		hsetroot -solid "#38362F"
 	;;
 	"-gradient")
 		#GRADIENT STRIPES
 		convert -size 100x100 \
-		xc:"#3A404A" \
-		xc:"#FF8D7E" \
-		xc:"#8AD6D2" \
-		xc:"#BAB6B3" \
-		xc:"#799FA1" \
-		xc:"#999393" \
-		xc:"#B2CCD1" \
-		xc:"#FFFFFF" \
+		xc:"#38362F" \
+		xc:"#C7CC60" \
+		xc:"#7A824D" \
+		xc:"#ABAA7B" \
+		xc:"#99A34D" \
+		xc:"#6E7351" \
+		xc:"#8C8765" \
+		xc:"#D6CFB5" \
 		+append -filter Cubic \
 		-distort SRT 60 \
 		-blur 0x40 \
@@ -32,14 +32,14 @@ case "$1" in
 	"-striped")
 		#STRIPES
 		convert -size 350x350 \
-		xc:"#3A404A" \
-		xc:"#FF8D7E" \
-		xc:"#8AD6D2" \
-		xc:"#BAB6B3" \
-		xc:"#799FA1" \
-		xc:"#999393" \
-		xc:"#B2CCD1" \
-		xc:"#FFFFFF" \
+		xc:"#38362F" \
+		xc:"#C7CC60" \
+		xc:"#7A824D" \
+		xc:"#ABAA7B" \
+		xc:"#99A34D" \
+		xc:"#6E7351" \
+		xc:"#8C8765" \
+		xc:"#D6CFB5" \
 		\( -clone 0--1 -clone 0--1 \) \
 		+append -filter Cubic \
 		-distort SRT 60 \
@@ -49,8 +49,8 @@ case "$1" in
 	;;
 	"-4color")
 		#4 COLOR GRADIENT
-		convert \( xc:"#FF8D7E" xc:"#84CDC9" +append \) \
-		\( xc:"#BAB6B3" xc:"#999393" +append \) -append \
+		convert \( xc:"#C7CC60" xc:"#707746" +append \) \
+		\( xc:"#ABAA7B" xc:"#6E7351" +append \) -append \
 		-filter point -interpolate catrom \
 		-define distort:viewport=100x100 \
 		-distort Affine '.5,.5 .5,.5   1.5,1.5 99.5,99.5' \
@@ -60,6 +60,6 @@ case "$1" in
 	;;
 	*)
 		#FALLBACK IF NOTHING IS CHOSEN
-		hsetroot -solid "#3A404A"
+		hsetroot -solid "#38362F"
 	;;
 esac

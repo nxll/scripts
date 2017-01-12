@@ -2,11 +2,48 @@
 #COLORIZE TRANSPARENT IMAGE
 #nxll <nxll@teknik.io>
 
-IMG=$1
-COLOR=$(xrdb -query | awk '/color8/ {print $2}')
-IMGSIZE=$(identify -format '%wx%h' $IMG)
+OPT=$1
+W="$HOME/.ttwall"
+#COLOR=$(xrdb -query | awk '/*color8:/ {print $2}')
 
-convert -size $IMGSIZE xc:"#323740" /tmp/colortile.png
-convert /tmp/colortile.png $IMG -gravity center -composite /tmp/wall.png
+if [ "$OPT" = "-f" ]; then
+	IMG=$2
+	IMGSIZE=$(identify -format '%wx%h' $IMG)
+elif [ "$OPT" = "-s" ]; then
+	REM=$(sxiv -tor $HOME/images/tiles > $W)
+	IMG=$(cat $W)
+	IMGSIZE=$(identify -format '%wx%h' $IMG)
+elif [ "$OPT" = "-r" ]; then
+	IMG=$(cat $W)
+	IMGSIZE=$(identify -format '%wx%h' $IMG)
+fi
 
-hsetroot -tile /tmp/wall.png
+DOSTUFF()
+{
+	convert -size $IMGSIZE xc:"#33312B" /tmp/colortile.png
+	convert /tmp/colortile.png $IMG -gravity center -composite /tmp/wall.png
+
+	rm /tmp/colortile.png
+	hsetroot -tile /tmp/wall.png
+}
+
+case $OPT in
+	-f)
+		$(DOSTUFF)
+		echo "$HOME/$IMG" > $W
+	;;
+	-s)
+		$(DOSTUFF)
+	;;
+	-r)
+		$(DOSTUFF)
+	;;
+	*)
+		echo
+		echo "USAGE:"
+		echo "-f \$FILE_PATH"
+		echo "-s (mark and quit - requires sxiv)"
+		echo "-r reloads wallpaper from $W"
+		echo
+	;;
+esac

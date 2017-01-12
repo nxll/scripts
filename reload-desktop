@@ -110,7 +110,7 @@ main ()
 
 	# Reload Wallpaper
 	#$HOME/bin/ws -wallpaper
-	$HOME/bin/tt $HOME/images/tiles/gray-floral.png
+	$HOME/bin/tt -r
 
 	# tmux
 	# Reload tmux colors
