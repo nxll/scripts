@@ -6,7 +6,7 @@ IMG=$1
 COLOR=$(xrdb -query | awk '/color8/ {print $2}')
 IMGSIZE=$(identify -format '%wx%h' $IMG)
 
-convert -size $IMGSIZE xc:"#393638" /tmp/colortile.png
+convert -size $IMGSIZE xc:"#323740" /tmp/colortile.png
 convert /tmp/colortile.png $IMG -gravity center -composite /tmp/wall.png
 
 hsetroot -tile /tmp/wall.png

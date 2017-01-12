@@ -14,25 +14,25 @@
 pkill lemonbar
 
 #COLORS
-FG="#C3C1B8"
-BG="#363334"
+FG="#DCDCDC"
+BG="#2A2F36"
 
-NBLACK="#393638"
-BBLACK="#403D3F"
-NRED="#97544D"
-BRED="#97463E"
-NGREEN="#97A293"
-BGREEN="#8BA283"
-NYELLOW="#C29F6F"
-BYELLOW="#C2975B"
-NBLUE="#5E606C"
-BBLUE="#53576C"
-NPURPLE="#78746C"
-BPURPLE="#787060"
-NCYAN="#7A6054"
-BCYAN="#7A5848"
-NWHITE="#C3C1B8"
-BWHITE="#D1CFC5"
+NBLACK="#323740"
+BBLACK="#3A404A"
+NRED="#F6887A"
+BRED="#FF8D7E"
+NGREEN="#84CDC9"
+BGREEN="#8AD6D2"
+NYELLOW="#B0ACA9"
+BYELLOW="#BAB6B3"
+NBLUE="#729597"
+BBLUE="#799FA1"
+NPURPLE="#908A8A"
+BPURPLE="#999393"
+NCYAN="#AAC3C8"
+BCYAN="#B2CCD1"
+NWHITE="#F5F5F5"
+BWHITE="#FFFFFF"
 
 #VARS
 FONT="-kakwa-kakwafont-medium-r-normal--12-120-72-72-c-60-iso8859-1"
@@ -90,7 +90,7 @@ MUSIC()
 		elif [ $PLAYING = "[paused]" ] ; then
 			SYMBOL="%{B$BBLACK} %{F$FG}%{F-} %{B-}"
 			SONG="%{B$NBLACK} $(mpc current -f "%artist% - %title%" | cut -c1-$MUSLENGTH) %{B-}"
-		elif [ "$(mpc status | awk '/volume:/ {print $2}')" = "n/a" ]; then
+		elif [ ! "$PLAYING" = "[playing]" ]; then
 			SYMBOL="%{B$BBLACK} %{F$FG}%{F-} %{B-}"
 			SONG="%{B$NBLACK} --- %{B-}"
 		fi
@@ -119,10 +119,10 @@ BAT()
     else
         if test $percent -gt 66; then
             symbol=""
-            echo -n "%{B$NBLACK} ${symbol} %{B-}"
+            echo -n "%{B$BBLACK} ${symbol} %{B-}"
         elif test $percent -gt 34; then
             symbol=""
-            echo -n "%{B$BRED} %{F$BG}${symbol}%{F-} %{B-}"
+            echo -n "%{B$BBLACK} ${symbol} %{B-}"
         else
 		symbol=""
             echo -n "%{B$BBLACK} ${symbol} %{B-}"
