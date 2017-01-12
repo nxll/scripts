@@ -14,25 +14,25 @@
 pkill lemonbar
 
 #COLORS
-FG="#D4D4D4"
-BG="#21211F"
+FG="#C3C1B8"
+BG="#363334"
 
-NBLACK="#292927"
-BBLACK="#2E2E2C"
-NRED="#939490"
-BRED="#C6C7C2"
-NGREEN="#9AC70E"
-BGREEN="#C2FA11"
-NYELLOW="#727370"
-BYELLOW="#90918E"
-NBLUE="#B6B8B3"
-BBLUE="#D4D6D0"
-NPURPLE="#D1D1CB"
-BPURPLE="#F0F0E9"
-NCYAN="#636361"
-BCYAN="#82827F"
-NWHITE="#B8B8B8"
-BWHITE="#C2C2C2"
+NBLACK="#393638"
+BBLACK="#403D3F"
+NRED="#97544D"
+BRED="#97463E"
+NGREEN="#97A293"
+BGREEN="#8BA283"
+NYELLOW="#C29F6F"
+BYELLOW="#C2975B"
+NBLUE="#5E606C"
+BBLUE="#53576C"
+NPURPLE="#78746C"
+BPURPLE="#787060"
+NCYAN="#7A6054"
+BCYAN="#7A5848"
+NWHITE="#C3C1B8"
+BWHITE="#D1CFC5"
 
 #VARS
 FONT="-kakwa-kakwafont-medium-r-normal--12-120-72-72-c-60-iso8859-1"
@@ -42,8 +42,8 @@ BORDER=5
 MUSLENGTH=45
 #ACTCHAR="+"
 #SELCHAR="+"
-ACTCHAR=""
-SELCHAR=""
+#ACTCHAR=""
+#SELCHAR=""
 
 if pgrep herbstluftwm; then
 monitor=${1:-0}
@@ -51,30 +51,6 @@ herbstclient pad $monitor 24
 fi
 
 WRK()
-{
-	OGWKSPACE=$(xprop -root _NET_CURRENT_DESKTOP | sed -e 's/_NET_CURRENT_DESKTOP(CARDINAL) = //')
-	
-	if [ ${OGWKSPACE} = "0" ] ;
-	then 
-		echo -e "%{B$NBLACK} %{F$NGREEN}$ACTCHAR%{F-} $SELCHAR $SELCHAR $SELCHAR $SELCHAR %{B-}"
-	elif [ ${OGWKSPACE} = "1" ] ;
-	then
-		echo -e "%{B$NBLACK} $SELCHAR %{F$NGREEN}$ACTCHAR%{F-} $SELCHAR $SELCHAR $SELCHAR %{B-}"
-	elif [ ${OGWKSPACE} = "2" ] ;
-	then 
-		echo -e "%{B$NBLACK} $SELCHAR $SELCHAR %{F$NGREEN}$ACTCHAR%{F-} $SELCHAR $SELCHAR %{B-}"
-	elif [ ${OGWKSPACE} = "3" ] ;
-	then 
-		echo -e "%{B$NBLACK} $SELCHAR $SELCHAR $SELCHAR %{F$NGREEN}$ACTCHAR%{F-} $SELCHAR %{B-}"
-	elif [ ${OGWKSPACE} = "4" ] ;
-	then 
-		echo -e "%{B$NBLACK} $SELCHAR $SELCHAR $SELCHAR $SELCHAR %{F$NGREEN}$ACTCHAR%{F-} %{B-}"
-    else
-		echo -e "%{B$NGREEN} %{F$BG}ERROR%{F-} %{B-}"
-	fi
-}
-
-WRKN()
 {
 	OGWKSPACE=$(xprop -root _NET_CURRENT_DESKTOP | sed -e 's/_NET_CURRENT_DESKTOP(CARDINAL) = //')
 	
@@ -98,30 +74,6 @@ WRKN()
 	fi
 }
 
-WRKBG()
-{
-	OGWKSPACE=$(xprop -root _NET_CURRENT_DESKTOP | sed -e 's/_NET_CURRENT_DESKTOP(CARDINAL) = //')
-	
-	if [ ${OGWKSPACE} = "0" ] ;
-	then 
-		echo -e "%{B$NGREEN} %{F$BG}$ACTCHAR%{F-} %{B$NBLACK} $SELCHAR $SELCHAR $SELCHAR $SELCHAR %{B-}"
-	elif [ ${OGWKSPACE} = "1" ] ;
-	then
-		echo -e "%{B$NBLACK} $SELCHAR %{B$NGREEN} %{F$BG}$ACTCHAR%{F-} %{B$NBLACK} $SELCHAR $SELCHAR $SELCHAR %{B-}"
-	elif [ ${OGWKSPACE} = "2" ] ;
-	then 
-		echo -e "%{B$NBLACK} $SELCHAR $SELCHAR %{B$NGREEN} %{F$BG}$ACTCHAR%{F-} %{B$NBLACK} $SELCHAR $SELCHAR %{B-}"
-	elif [ ${OGWKSPACE} = "3" ] ;
-	then 
-		echo -e "%{B$NBLACK} $SELCHAR $SELCHAR $SELCHAR %{B$NGREEN} %{F$BG}$ACTCHAR%{F-} %{B$NBLACK} $SELCHAR %{B-}"
-	elif [ ${OGWKSPACE} = "4" ] ;
-	then 
-		echo -e "%{B$NBLACK} $SELCHAR $SELCHAR $SELCHAR $SELCHAR %{B$NGREEN}%{F$BG} $ACTCHAR %{F-}%{B-}"
-    else
-		echo -e "%{B$NGREEN} %{F$BG}ERROR%{F-} %{B-}"
-	fi
-}
-
 WIN()
 {
     #echo -n "%{B$NGREEN}%{F$BG}  %{F-}%{B-}"
@@ -131,12 +83,16 @@ WIN()
 MUSIC()
 {
 	PLAYING=$(mpc status | sed -n 2p | cut -c1-9)
+	
 		if [ "$PLAYING" = "[playing]" ] ; then
         	SYMBOL="%{B$BBLACK} %{F$FG}%{F-} %{B-}"
-	        SONG="%{B$NBLACK} $(mpc current -f "%artist% - %title%" | cut -c1-$MUSLENGTH) %{B-}"
+			SONG="%{B$NBLACK} $(mpc current -f "%artist% - %title%" | cut -c1-$MUSLENGTH) %{B-}"
 		elif [ $PLAYING = "[paused]" ] ; then
 			SYMBOL="%{B$BBLACK} %{F$FG}%{F-} %{B-}"
-	     	SONG="%{B$NBLACK} $(mpc current -f "%artist% - %title%" | cut -c1-$MUSLENGTH) %{B-}"
+			SONG="%{B$NBLACK} $(mpc current -f "%artist% - %title%" | cut -c1-$MUSLENGTH) %{B-}"
+		elif [ "$(mpc status | awk '/volume:/ {print $2}')" = "n/a" ]; then
+			SYMBOL="%{B$BBLACK} %{F$FG}%{F-} %{B-}"
+			SONG="%{B$NBLACK} --- %{B-}"
 		fi
 
     echo -n "${SYMBOL}${SONG}"
@@ -163,10 +119,10 @@ BAT()
     else
         if test $percent -gt 66; then
             symbol=""
-            echo -n "%{B$BBLACK} ${symbol} %{B-}"
+            echo -n "%{B$NBLACK} ${symbol} %{B-}"
         elif test $percent -gt 34; then
             symbol=""
-            echo -n "%{B$BBLACK} ${symbol} %{B-}"
+            echo -n "%{B$BRED} %{F$BG}${symbol}%{F-} %{B-}"
         else
 		symbol=""
             echo -n "%{B$BBLACK} ${symbol} %{B-}"
@@ -203,7 +159,7 @@ BAR()
 { 
     #ADD ALL THE THINGS
     while true; do
-		BUF="$(WRKN) $(MUSIC)%{c}%{r}$(VOL) $(BAT) $(NET) $(DATE) $(CLOCK)" 
+		BUF="$(WRK) $(MUSIC)%{c}%{r}$(VOL) $(BAT) $(NET) $(DATE) $(CLOCK)" 
 		echo $BUF	
         sleep 0.1
     done | lemonbar -f $GLYPH \

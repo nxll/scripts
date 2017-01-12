@@ -9,19 +9,19 @@ case "$1" in
 	;;
 	"-solid")
 		#SOLID BOLD BLACK COLOR
-		hsetroot -solid "#2E2E2C"
+		hsetroot -solid "#403D3F"
 	;;
 	"-gradient")
 		#GRADIENT STRIPES
 		convert -size 100x100 \
-		xc:"#2E2E2C" \
-		xc:"#C6C7C2" \
-		xc:"#C2FA11" \
-		xc:"#90918E" \
-		xc:"#D4D6D0" \
-		xc:"#F0F0E9" \
-		xc:"#82827F" \
-		xc:"#C2C2C2" \
+		xc:"#403D3F" \
+		xc:"#97463E" \
+		xc:"#8BA283" \
+		xc:"#C2975B" \
+		xc:"#53576C" \
+		xc:"#787060" \
+		xc:"#7A5848" \
+		xc:"#D1CFC5" \
 		+append -filter Cubic \
 		-distort SRT 60 \
 		-blur 0x40 \
@@ -32,14 +32,14 @@ case "$1" in
 	"-striped")
 		#STRIPES
 		convert -size 350x350 \
-		xc:"#2E2E2C" \
-		xc:"#C6C7C2" \
-		xc:"#C2FA11" \
-		xc:"#90918E" \
-		xc:"#D4D6D0" \
-		xc:"#F0F0E9" \
-		xc:"#82827F" \
-		xc:"#C2C2C2" \
+		xc:"#403D3F" \
+		xc:"#97463E" \
+		xc:"#8BA283" \
+		xc:"#C2975B" \
+		xc:"#53576C" \
+		xc:"#787060" \
+		xc:"#7A5848" \
+		xc:"#D1CFC5" \
 		\( -clone 0--1 -clone 0--1 \) \
 		+append -filter Cubic \
 		-distort SRT 60 \
@@ -49,8 +49,8 @@ case "$1" in
 	;;
 	"-4color")
 		#4 COLOR GRADIENT
-		convert \( xc:"#C6C7C2" xc:"#9AC70E" +append \) \
-		\( xc:"#90918E" xc:"#F0F0E9" +append \) -append \
+		convert \( xc:"#97463E" xc:"#97A293" +append \) \
+		\( xc:"#C2975B" xc:"#787060" +append \) -append \
 		-filter point -interpolate catrom \
 		-define distort:viewport=100x100 \
 		-distort Affine '.5,.5 .5,.5   1.5,1.5 99.5,99.5' \
@@ -60,6 +60,6 @@ case "$1" in
 	;;
 	*)
 		#FALLBACK IF NOTHING IS CHOSEN
-		hsetroot -solid "#2E2E2C"
+		hsetroot -solid "#403D3F"
 	;;
 esac
