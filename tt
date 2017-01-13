@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #COLORIZE TRANSPARENT IMAGE
 #nxll <nxll@teknik.io>
 
@@ -11,58 +11,52 @@
 # For use with images from here (https://www.transparenttextures.com/)
 # However you could make your own so long as the background is transparent.
 
-OPT=$1
-W="$HOME/.ttwall"
-COLOR=$(xrdb -query | awk '/*color8:/ {print $2}')
+declare opt wall color img imgsize
 
-if [ "$OPT" = "-f" ]; then
-	IMG=$2
-	IMGSIZE=$(identify -format '%wx%h' $IMG)
-	REM=$(realpath $IMG > $W)
-elif [ "$OPT" = "-s" ]; then
-	REM=$(sxiv -tor $HOME/images/tiles > $W)
-	IMG=$(cat $W)
-	IMGSIZE=$(identify -format '%wx%h' $IMG)
-elif [ "$OPT" = "-r" ]; then
-	IMG=$(cat $W) 
-	IMGSIZE=$(identify -format '%wx%h' $IMG)
-fi		
+opt=$1
+wall="$HOME/.ttwall"
+color=$(xrdb -query | awk '/*color8:/ {print $2}')
 
-DOSTUFF()
-{
-	convert -size $IMGSIZE xc:"$COLOR" /tmp/colortile.png
-	convert /tmp/colortile.png $IMG -gravity center -composite /tmp/wall.png
+generate() {
+	convert -size "$imgsize" xc:"$color" /tmp/colortile.png
+	convert /tmp/colortile.png "$img" -gravity center -composite /tmp/wall.png
 
 	rm /tmp/colortile.png
 	hsetroot -tile /tmp/wall.png
 }
 
-HELP()
-{
-	echo "USAGE:"
-	echo "-f \$FILE_PATH"
-	echo "-s (mark and quit - requires sxiv)"
-	echo "-r reloads wallpaper from $W"
+usage() {
+echo "
+USAGE:
+-f \$FILE_PATH
+-s (mark and quit - requires sxiv)
+-r reloads wallpaper from $wall
+"
 }
 
-case $OPT in
+case $opt in
 	-f)
-		$(DOSTUFF)
-	;;
+		img=$2
+		shift
+		imgsize=$(identify -format '%wx%h' "$img")
+		realpath "$img" > "$wall"
+		generate
+		;;
 	-s)
-		$(DOSTUFF)
-	;;
+		sxiv -tor "$HOME/images/tiles" > "$wall"
+		img=$(< "$wall")
+		imgsize=$(identify -format '%wx%h' "$img")
+		generate
+		;;
 	-r)
-		if [ -f $W ]; then
-			$(DOSTUFF)
+		img=$(< "$wall")
+		imgsize=$(identify -format '%wx%h' "$img")
+		if [[ -f $wall ]]; then
+			generate
 		else
-			echo "$(HELP)"
+			usage
 		fi
 	;;
-	-h)
-		echo "$(HELP)"
-	;;
-	*)
-		echo "$(HELP)"
-	;;
+	-h) usage ;;
+	*) usage ;;
 esac
