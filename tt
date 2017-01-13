@@ -2,48 +2,67 @@
 #COLORIZE TRANSPARENT IMAGE
 #nxll <nxll@teknik.io>
 
+#Requirments:
+# * imagemagick
+# * coreutils
+# * hsetroot
+# * sxiv (optional for -s)
+
+# For use with images from here (https://www.transparenttextures.com/)
+# However you could make your own so long as the background is transparent.
+
 OPT=$1
 W="$HOME/.ttwall"
-#COLOR=$(xrdb -query | awk '/*color8:/ {print $2}')
+COLOR=$(xrdb -query | awk '/*color8:/ {print $2}')
 
 if [ "$OPT" = "-f" ]; then
 	IMG=$2
 	IMGSIZE=$(identify -format '%wx%h' $IMG)
+	REM=$(realpath $IMG > $W)
 elif [ "$OPT" = "-s" ]; then
 	REM=$(sxiv -tor $HOME/images/tiles > $W)
 	IMG=$(cat $W)
 	IMGSIZE=$(identify -format '%wx%h' $IMG)
 elif [ "$OPT" = "-r" ]; then
-	IMG=$(cat $W)
+	IMG=$(cat $W) 
 	IMGSIZE=$(identify -format '%wx%h' $IMG)
-fi
+fi		
 
 DOSTUFF()
 {
-	convert -size $IMGSIZE xc:"#33312B" /tmp/colortile.png
+	convert -size $IMGSIZE xc:"$COLOR" /tmp/colortile.png
 	convert /tmp/colortile.png $IMG -gravity center -composite /tmp/wall.png
 
 	rm /tmp/colortile.png
 	hsetroot -tile /tmp/wall.png
 }
 
+HELP()
+{
+	echo "USAGE:"
+	echo "-f \$FILE_PATH"
+	echo "-s (mark and quit - requires sxiv)"
+	echo "-r reloads wallpaper from $W"
+}
+
 case $OPT in
 	-f)
 		$(DOSTUFF)
-		echo "$HOME/$IMG" > $W
 	;;
 	-s)
 		$(DOSTUFF)
 	;;
 	-r)
-		$(DOSTUFF)
+		if [ -f $W ]; then
+			$(DOSTUFF)
+		else
+			echo "$(HELP)"
+		fi
+	;;
+	-h)
+		echo "$(HELP)"
 	;;
 	*)
-		echo
-		echo "USAGE:"
-		echo "-f \$FILE_PATH"
-		echo "-s (mark and quit - requires sxiv)"
-		echo "-r reloads wallpaper from $W"
-		echo
+		echo "$(HELP)"
 	;;
 esac
