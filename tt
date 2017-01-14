@@ -18,12 +18,13 @@ declare opt wall color img imgsize
 opt=$1
 wall="$HOME/.ttwall"
 color=$(xrdb -query | awk '/*color8:/ {print $2}')
+tmp=$(mktemp --suffix=.png)
 
 generate() {
-	convert -size "$imgsize" xc:"$color" /tmp/colortile.png
-	convert /tmp/colortile.png "$img" -gravity center -composite /tmp/wall.png
+	convert -size "$imgsize" xc:"$color" "$tmp"
+	convert "$tmp" "$img" -gravity center -composite /tmp/wall.png
 
-	rm /tmp/colortile.png
+	rm "$tmp"
 	hsetroot -tile /tmp/wall.png
 }
 
@@ -63,8 +64,7 @@ case $opt in
 			imgsize=$(identify -format '%wx%h' "$img")
 			generate
 		else
-			echo -e "\nFirst select an image."
-			usage
+			echo -e "\nFirst select an image. Type 'tt -h'.\n"
 		fi
 	;;
 	-h|-help) usage ;;
