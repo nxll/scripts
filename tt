@@ -46,11 +46,15 @@ tt [-h|-help]
 
 case $opt in
 	-f|-file)
-		img=$2
-		shift
-		imgsize=$(identify -format '%wx%h' "$img")
-		realpath "$img" > "$wall"
-		generate
+		if [[ -f $2 ]];then
+			img=$2
+			shift
+			imgsize=$(identify -format '%wx%h' "$img")
+			realpath "$img" > "$wall"
+			generate
+		else
+			echo "File does not exist, please choose an existing file"
+		fi
 		;;
 	-s|-select)
 		sxiv -tor "$HOME/images/tiles" > "$wall"
