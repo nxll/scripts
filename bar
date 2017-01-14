@@ -14,25 +14,25 @@
 pkill lemonbar
 
 #COLORS
-FG="#CCC5AD"
-BG="#2D2B26"
+FG="#D4D4D4"
+BG="#21211F"
 
-NBLACK="#33312B"
-BBLACK="#38362F"
-NRED="#BEC35C"
-BRED="#C7CC60"
-NGREEN="#707746"
-BGREEN="#7A824D"
-NYELLOW="#A09F73"
-BYELLOW="#ABAA7B"
-NBLUE="#909A49"
-BBLUE="#99A34D"
-NPURPLE="#65694A"
-BPURPLE="#6E7351"
-NCYAN="#837E5E"
-BCYAN="#8C8765"
-NWHITE="#D1CAB1"
-BWHITE="#D6CFB5"
+NBLACK="#292927"
+BBLACK="#2E2E2C"
+NRED="#939490"
+BRED="#C6C7C2"
+NGREEN="#9AC70E"
+BGREEN="#C2FA11"
+NYELLOW="#727370"
+BYELLOW="#90918E"
+NBLUE="#B6B8B3"
+BBLUE="#D4D6D0"
+NPURPLE="#D1D1CB"
+BPURPLE="#F0F0E9"
+NCYAN="#636361"
+BCYAN="#82827F"
+NWHITE="#B8B8B8"
+BWHITE="#C2C2C2"
 
 #VARS
 FONT="-kakwa-kakwafont-medium-r-normal--12-120-72-72-c-60-iso8859-1"
@@ -84,10 +84,10 @@ MUSIC()
 {
 	PLAYING=$(mpc status | sed -n 2p | cut -c1-9)
 	
-		if [ "$PLAYING" = "[playing]" ] ; then
+		if [ "$PLAYING" = "[playing]" ]; then
         	SYMBOL="%{B$BBLACK} %{F$FG}%{F-} %{B-}"
 			SONG="%{B$NBLACK} $(mpc current -f "%artist% - %title%" | cut -c1-$MUSLENGTH) %{B-}"
-		elif [ $PLAYING = "[paused]" ] ; then
+		elif [ $PLAYING = "[paused]" ]; then
 			SYMBOL="%{B$BBLACK} %{F$FG}%{F-} %{B-}"
 			SONG="%{B$NBLACK} $(mpc current -f "%artist% - %title%" | cut -c1-$MUSLENGTH) %{B-}"
 		elif [ ! "$PLAYING" = "[playing]" ]; then
@@ -96,6 +96,16 @@ MUSIC()
 		fi
 
     echo -n "${SYMBOL}${SONG}"
+}
+
+UPD()
+{
+	COUNT="$(pacman -Qu | wc -l)"
+	if [ ! "$COUNT" = "0" ]; then
+		SYMBOL=""
+
+		echo "%{B$BBLACK} $SYMBOL %{B$NBLACK} $COUNT %{B$BG} ${B-} "
+	fi
 }
 
 VOL()
@@ -135,9 +145,11 @@ BAT()
 NET()
 {
 	SYMBOL="%{B$BBLACK}  %{B-}"
+	DISCONNECTED=$(iw wls1 link | awk '/Not/ {print $1}')
+
 	WIFI_SSID=$(
-	if [ grep -q "Not connected."] ; then
-		echo "No AP"
+	if [ "$DISCONNECTED" = "Not" ]; then
+		echo "NOT CONNECTED"
 	else
 		iw wls1 link | grep 'SSID' | sed 's/SSID: //' | sed 's/\t//'
 	fi)
