@@ -1,42 +1,56 @@
 #!/bin/bash
-#BACKUP DOTFILES TO GITHUB
+#BACKUP REPOS TO GITHUB
 
-CPH="cp -r $HOME"
-GITDIR="$HOME/.git/dotfiles"
+cph="cp -r $HOME"
+dotfiles="$HOME/.git/dotfiles"
+scripts="$HOME/.git/scripts"
 
-#README
-$CPH/tmp/README.md $GITDIR/
+case $1 in
+-dotfiles)
+	$cph/.zshrc $dotfiles/
+	$cph/.vimrc $dotfiles/
+	$cph/.interrobangrc $dotfiles/
+	$cph/.tmux.conf $dotfiles/
+	$cph/.xinitrc $dotfiles/
+	$cph/.Xresources $dotfiles/
+	$cph/.compton.conf $dotfiles/
+	$cph/.zlogin $dotfiles/
 
-#CONFIGS
-$CPH/.zshrc $GITDIR/
-$CPH/.vimrc $GITDIR/
-$CPH/.interrobangrc $GITDIR/
-$CPH/.tmux.conf $GITDIR/
-$CPH/.xinitrc $GITDIR/
-$CPH/.Xresources $GITDIR/
-$CPH/.compton.conf $GITDIR/
-$CPH/.zlogin $GITDIR/
+	$cph/.vim/colors/fray.vim $dotfiles/.vim/colors/
+	$cph/.ncmpcpp/config $dotfiles/.ncmpcpp/
+	$cph/.weechat/weechat.conf $dotfiles/.weechat/
 
-#OUTSIDE OF $HOME
-$CPH/.vim/colors/fray.vim $GITDIR/.vim/colors/
-$CPH/.ncmpcpp/config $GITDIR/.ncmpcpp/
-$CPH/.weechat/weechat.conf $GITDIR/.weechat/
+	$cph/.config/dunst/ $dotfiles/.config/
+	$cph/.config/herbstluftwm/ $dotfiles/.config/
+	rm -rf $HOME/.config/zenbu/__pycache__
+	$cph/.config/zenbu/ $dotfiles/.config/
+	$cph/.config/mpd/mpd.conf $dotfiles/.config/mpd/
+	$cph/.config/mpv/ $dotfiles/.config/
+	$cph/.config/zathura/ $dotfiles/.config/
+	$cph/.config/vis/config $dotfiles/.config/vis/
+	$cph/.config/vis/colors/mono.scheme $dotfiles/.config/vis/colors/
+	$cph/.config/user-dirs.dirs $dotfiles/.config/
 
-$CPH/.config/dunst/ $GITDIR/.config/
-$CPH/.config/herbstluftwm/ $GITDIR/.config/
-rm -rf $HOME/.config/zenbu/__pycache__
-$CPH/.config/zenbu/ $GITDIR/.config/
-$CPH/.config/mpd/mpd.conf $GITDIR/.config/mpd/
-$CPH/.config/mpv/ $GITDIR/.config/
-$CPH/.config/zathura/ $GITDIR/.config/
-$CPH/.config/vis/config $GITDIR/.config/vis/
-$CPH/.config/vis/colors/mono.scheme $GITDIR/.config/vis/colors/
-$CPH/.config/user-dirs.dirs $GITDIR/.config/
+	#PUSH
+	cd $dotfiles
+	git add .
+	git commit -m updates
+	git push ghdots master
+	git push tdots master
+	notify-send "DOTFILES UP TO DATE"
+	cd
+	;;
+-scripts)
+	$cph/bin/* $scripts/
 
-#PUSH
-cd $GITDIR
-git add .
-git commit -m updates
-git push ghdots master
-git push tdots master
-notify-send "GIT UP TO DATE"
+	#PUSH
+	cd $scripts
+	git add .
+	git commit -m updates
+	git push ghscripts master
+	git push tscripts master
+	notify-send "SCRIPTS UP TO DATE"
+	cd
+	;;
+*) echo "You modified me to push -dotfiles or -scripts" ;;
+esac
