@@ -17,7 +17,7 @@ declare opt wall color img imgsize
 
 opt=$1
 wall="$HOME/.ttwall"
-color=$(xrdb -query | awk '/*color8:/ {print $2}')
+color=$(cat $HOME/.Xresources | awk '/\*color8:/ {print $2}')
 tmp=$(mktemp --suffix=.png)
 
 generate() {
