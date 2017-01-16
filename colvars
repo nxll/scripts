@@ -1,46 +1,46 @@
 #!/bin/bash
 
-BG=$(xrdb -query | awk '/*background:/ {print $2}')
-FG=$(xrdb -query | awk '/*foreground:/ {print $2}')
-NBLACK=$(xrdb -query | awk '/*color0:/ {print $2}')
-BBLACK=$(xrdb -query | awk '/*color8:/ {print $2}')
-NRED=$(xrdb -query | awk '/*color1:/ {print $2}')
-BRED=$(xrdb -query | awk '/*color9:/ {print $2}')
-NGREEN=$(xrdb -query | awk '/*color2:/ {print $2}')
-BGREEN=$(xrdb -query | awk '/*color10:/ {print $2}')
-NYELLOW=$(xrdb -query | awk '/*color3:/ {print $2}')
-BYELLOW=$(xrdb -query | awk '/*color11:/ {print $2}')
-NBLUE=$(xrdb -query | awk '/*color4:/ {print $2}')
-BBLUE=$(xrdb -query | awk '/*color12:/ {print $2}')
-NPURPLE=$(xrdb -query | awk '/*color5:/ {print $2}')
-BPURPLE=$(xrdb -query | awk '/*color13:/ {print $2}')
-NCYAN=$(xrdb -query | awk '/*color6:/ {print $2}')
-BCYAN=$(xrdb -query | awk '/*color14:/ {print $2}')
-NWHITE=$(xrdb -query | awk '/*color7:/ {print $2}')
-BWHITE=$(xrdb -query | awk '/*color15:/ {print $2}')
+bg=$(xrdb -query | awk '/*background:/ {print $2}')
+fg=$(xrdb -query | awk '/*foreground:/ {print $2}')
+nblk=$(xrdb -query | awk '/*color0:/ {print $2}')
+bblk=$(xrdb -query | awk '/*color8:/ {print $2}')
+nred=$(xrdb -query | awk '/*color1:/ {print $2}')
+bred=$(xrdb -query | awk '/*color9:/ {print $2}')
+ngrn=$(xrdb -query | awk '/*color2:/ {print $2}')
+bgrn=$(xrdb -query | awk '/*color10:/ {print $2}')
+nylw=$(xrdb -query | awk '/*color3:/ {print $2}')
+bylw=$(xrdb -query | awk '/*color11:/ {print $2}')
+nblu=$(xrdb -query | awk '/*color4:/ {print $2}')
+bblu=$(xrdb -query | awk '/*color12:/ {print $2}')
+nmag=$(xrdb -query | awk '/*color5:/ {print $2}')
+bmag=$(xrdb -query | awk '/*color13:/ {print $2}')
+ncyn=$(xrdb -query | awk '/*color6:/ {print $2}')
+bcyn=$(xrdb -query | awk '/*color14:/ {print $2}')
+nwht=$(xrdb -query | awk '/*color7:/ {print $2}')
+bwht=$(xrdb -query | awk '/*color15:/ {print $2}')
 
 
 echo "
-BG: $BG
-FG: $FG
+bg: $bg
+fg: $fg
 
 NORMAL:
-$NBLACK
-$NRED
-$NGREEN
-$NYELLOW
-$NBLUE
-$NPURPLE
-$NCYAN
-$NWHITE
+$nblk
+$nred
+$ngrn
+$nylw
+$nblu
+$nmag
+$ncyn
+$nwht
 
 BOLD:
-$BBLACK
-$BRED
-$BGREEN
-$BYELLOW
-$BBLUE
-$BPURPLE
-$BCYAN
-$BWHITE
+$bblk
+$bred
+$bgrn
+$bylw
+$bblu
+$bmag
+$bcyn
+$bwht
 "
