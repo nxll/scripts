@@ -13,28 +13,28 @@
 pkill lemonbar
 
 #COLORS
-fg="#B8B9B4"
-bg="#21211F"
+fg="#CACCC6"
+bg="#303030"
 
-nblk="#262624"
-bblk="#282826"
+nblk="#3B3B3B"
+bblk="#454545"
 nred="#939490"
-bred="#989995"
+bred="#C6C7C2"
 ngrn="#9AC70E"
 bgrn="#C2FA11"
-nylw="#B6B8B3"
-bylw="#BBBDB8"
-nblu="#727370"
-bblu="#777875"
+nylw="#727370"
+bylw="#90918E"
+nblu="#B6B8B3"
+bblu="#D4D6D0"
 nmag="#D1D1CB"
-bmag="#D6D6D0"
+bmag="#F0F0E9"
 ncyn="#636361"
-bcyn="#696966"
+bcyn="#82827F"
 nwht="#AAABA6"
-bwht="#AFB0AB"
+bwht="#C8C9C4"
 
 #VARS
-font="-jmk-neep-medium-r-semicondensed--11-100-75-75-c-50-iso8859-1"
+font="-kakwa-kakwafont-medium-r-normal--12-120-72-72-c-60-iso8859-1"
 glyph="-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1"
 height=18
 border=5

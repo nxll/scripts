@@ -22,7 +22,7 @@ tmp=$(mktemp --suffix=.png)
 
 generate() {
 	convert -size "$imgsize" xc:"$color" "$tmp"
-	convert "$tmp" "$img" -gravity center -composite /tmp/wall.png
+	convert "$tmp" "$img" -gravity center -composite /tmp/wall.png	
 
 	rm "$tmp"
 	hsetroot -tile /tmp/wall.png
@@ -30,17 +30,17 @@ generate() {
 
 usage() {
 echo -e "\nUSAGE:
-tt [-f|-file <path>]
+tt [-f | -file <path>]
 	Colors and applies the given image.
 
-tt [-s|-select]
+tt [-s | -select]
 	Same as above but with visual selection.
 	Mark your image and quit, requires sxiv.
 
-tt [-r|-reload]
+tt [-r | -reload]
 	Reloads the last set image from $wall
 
-tt [-h|-help]
+tt [-h | -help]
 	Display this dialogue.\n"
 }
 
