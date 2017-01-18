@@ -13,28 +13,29 @@
 pkill lemonbar
 
 #COLORS
-fg="#CACCC6"
-bg="#303030"
+fg="#B8B9B4"
+bg="#242422"
 
-nblk="#3B3B3B"
-bblk="#454545"
+hint="#9AC70A"
+nblk="#292927"
+bblk="#2E2E2C"
 nred="#939490"
-bred="#C6C7C2"
+bred="#989995"
 ngrn="#9AC70E"
 bgrn="#C2FA11"
-nylw="#727370"
-bylw="#90918E"
-nblu="#B6B8B3"
-bblu="#D4D6D0"
+nylw="#B6B8B3"
+bylw="#BBBDB8"
+nblu="#727370"
+bblu="#777875"
 nmag="#D1D1CB"
-bmag="#F0F0E9"
+bmag="#D6D6D0"
 ncyn="#636361"
-bcyn="#82827F"
+bcyn="#696966"
 nwht="#AAABA6"
-bwht="#C8C9C4"
+bwht="#AFB0AB"
 
 #VARS
-font="-kakwa-kakwafont-medium-r-normal--12-120-72-72-c-60-iso8859-1"
+font="-lucy-tewi-medium-r-normal--11-90-100-100-c-60-iso10646-1"
 glyph="-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1"
 height=18
 border=5
@@ -56,27 +57,27 @@ WRK()
 	
 	if [ "${wrkspce}" = "0" ] ;
 	then 
-		echo "%{B$ngrn} %{F$bg}0%{F-} %{B$nblk} 1 2 3 4 %{B-}"
+		echo "%{B$hint} %{F$bg}0%{F-} %{B$nblk} 1 2 3 4 %{B-}"
 	elif [ "${wrkspce}" = "1" ] ;
 	then
-		echo "%{B$nblk} 0 %{B$ngrn} %{F$bg}1%{F-} %{B$nblk} 2 3 4 %{B-}"
+		echo "%{B$nblk} 0 %{B$hint} %{F$bg}1%{F-} %{B$nblk} 2 3 4 %{B-}"
 	elif [ "${wrkspce}" = "2" ] ;
 	then 
-		echo "%{B$nblk} 0 1 %{B$ngrn} %{F$bg}2%{F-} %{B$nblk} 3 4 %{B-}"
+		echo "%{B$nblk} 0 1 %{B$hint} %{F$bg}2%{F-} %{B$nblk} 3 4 %{B-}"
 	elif [ "${wrkspce}" = "3" ] ;
 	then 
-		echo "%{B$nblk} 0 1 2 %{B$ngrn} %{F$bg}3%{F-} %{B$nblk} 4 %{B-}"
+		echo "%{B$nblk} 0 1 2 %{B$hint} %{F$bg}3%{F-} %{B$nblk} 4 %{B-}"
 	elif [ "${wrkspce}" = "4" ] ;
 	then 
-		echo "%{B$nblk} 0 1 2 3 %{B$ngrn} %{F$bg}4%{F-} %{B-}"
+		echo "%{B$nblk} 0 1 2 3 %{B$hint} %{F$bg}4%{F-} %{B-}"
     else
-		echo "%{B$ngrn} %{F$bg}NONE%{F-} %{B-}"
+		echo "%{B$hint} %{F$bg}NONE%{F-} %{B-}"
 	fi
 }
 
 WIN()
 {
-    #echo -n "%{B$ngrn}%{F$bg}  %{F-}%{B-}"
+    #echo -n "%{B$hint}%{F$bg}  %{F-}%{B-}"
 	echo -n "%{B$bblk}%{F$fg} $(wname $(pfw)) %{F-}%{B-}"
 }
 
@@ -154,7 +155,7 @@ DATE()
 
 CLOCK()
 {
-    echo -n "%{B$ngrn}%{F$bg} $(date "+%H:%M") %{F-}%{B-}"
+    echo -n "%{B$hint}%{F$bg} $(date "+%H:%M") %{F-}%{B-}"
 }
 
 BAR()

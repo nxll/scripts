@@ -1,9 +1,11 @@
 #!/bin/sh
 # Toggle lemonbar
 
-if pgrep "lemonbar" > /dev/null
-then
-    pkill -x lemonbar && herbstclient pad 0 0
+BAR_PID=$(pidof lemonbar)
+
+if [ $BAR_PID ]; then
+    kill -9 $BAR_PID
+	herbstclient pad 0 0
 else
     $HOME/bin/bar &
 fi
