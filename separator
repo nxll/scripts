@@ -1,6 +1,0 @@
-#!/bin/bash
-
-for ((x = 0; x < $(tput cols); x++)); do
-  printf %s "$(tput setaf 0)█$(tput sgr0)"
-done
-echo
