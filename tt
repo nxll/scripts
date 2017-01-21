@@ -16,6 +16,7 @@
 declare opt wall color img imgsize
 
 opt=$1
+imgdir="$HOME/images/tiles"
 wall="$HOME/.ttwall"
 color=$(cat $HOME/.Xresources | awk '/\*color8:/ {print $2}')
 tmp=$(mktemp --suffix=.png)
@@ -57,7 +58,7 @@ case $opt in
 		fi
 		;;
 	-s|-select)
-		sxiv -tor "$HOME/images/tiles" > "$wall"
+		sxiv -tor "$imgdir" > "$wall"
 		img=$(< "$wall")
 		imgsize=$(identify -format '%wx%h' "$img")
 		generate
