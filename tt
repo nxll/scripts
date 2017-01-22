@@ -13,7 +13,7 @@
 # * hsetroot <https://github.com/elmiko/hsetroot>
 # * sxiv <https://github.com/muennich/sxiv> (optional for selection)
 
-declare opt wall color img imgsize
+declare opt imgdir wall color img imgsize
 
 opt=$1
 imgdir="$HOME/images/tiles"
