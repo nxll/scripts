@@ -16,7 +16,7 @@ case $1 in
 	$cph/.compton.conf $dotfiles/
 	$cph/.zlogin $dotfiles/
 
-	$cph/.vim/colors/fray.vim $dotfiles/.vim/colors/
+	$cph/.vim/colors $dotfiles/.vim/
 	$cph/.ncmpcpp/config $dotfiles/.ncmpcpp/
 	$cph/.weechat/weechat.conf $dotfiles/.weechat/
 
@@ -27,7 +27,7 @@ case $1 in
 	$cph/.config/mpd/mpd.conf $dotfiles/.config/mpd/
 	$cph/.config/mpv/ $dotfiles/.config/
 	$cph/.config/zathura/ $dotfiles/.config/
-	$cph/.config/vis/config $dotfiles/.config/vis/
+	$cph/.config/cava/config $dotfiles/.config/cava/
 	$cph/.config/vis/colors/mono.scheme $dotfiles/.config/vis/colors/
 	$cph/.config/user-dirs.dirs $dotfiles/.config/
 
