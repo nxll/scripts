@@ -1,0 +1,51 @@
+#!/usr/bin/bash
+
+export LC_ALL=C
+export LANG=C
+
+declare bg ngrn bgrn nwht nwht rst
+
+bg=$(tput setab 0)
+ngrn=$(tput setaf 2)
+bgrn=$(tput setaf 10)
+nwht=$(tput setaf 7)
+bwht=$(tput setaf 15)
+rst=$(tput sgr0)
+
+usrhst() {
+	echo " USER    $bwht$USER$ngrn@$bwht$HOSTNAME$rst"
+}
+
+krnl() {
+	echo " KERNEL  $bwht$(uname -rms)$rst"
+}
+
+wm() {
+	echo " WM      $bwht$(xprop -id "$(xprop -root -notype | awk '$1=="_NET_SUPPORTING_WM_CHECK:"{print $5}')" -notype -f _NET_WM_NAME 8t | awk '/_NET_WM_NAME/ {print $3}')$rst"
+}
+
+shell() {
+	echo " SHELL   $bwht$SHELL$rst"
+}
+
+font() {
+	echo " FONT    $bwht$(grep -i -F "${term/d}*font" < <(xrdb -query) | awk -F '\\-' '{printf $3}')$rst"
+}
+
+pkgcount() {
+	echo " PACKAGES  $bwht$(pacman -Q | wc -l)$rst"
+}
+
+song() {
+	echo " MUSIC   $bwht$(mpc current -f %artist%)$ngrn x $bwht$(mpc current -f %title%)"
+}
+
+echo
+echo "$(usrhst)"
+echo "$(krnl)"
+echo "$(wm)"
+echo "$(shell)"
+echo "$(font)"
+echo "$(song)"
+#minblox-solid
+dvl8
