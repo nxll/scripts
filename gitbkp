@@ -28,7 +28,6 @@ case $1 in
 	$cph/.config/mpv/ $dotfiles/.config/
 	$cph/.config/zathura/ $dotfiles/.config/
 	$cph/.config/cava/config $dotfiles/.config/cava/
-	$cph/.config/vis/colors/mono.scheme $dotfiles/.config/vis/colors/
 	$cph/.config/user-dirs.dirs $dotfiles/.config/
 
 	#PUSH

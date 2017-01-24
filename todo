@@ -1,0 +1,31 @@
+#!/bin/sh
+# todo: v 1.0  2016/13/10 12:02:00 dcat
+
+umask 0177
+
+: ${TODO:=$HOME/.TODO}
+: ${TEMP:=/tmp/todo.tmp}
+
+[ $# -eq 0 ] && {
+	echo
+	nl -n rn <$TODO
+	echo
+	exit 0
+}
+
+# portable alternative for `sed` in-place flag
+in_place() {
+	:>$TEMP || exit 1
+	sed "$@" <$TODO >$TEMP && mv $TEMP $TODO || rm $TEMP
+}
+
+case "$1" in
+-a|--add)
+	shift
+	echo "$@" >>$TODO
+	;;
+-r|--remove)
+	shift
+	in_place "$@d"
+	;;
+esac

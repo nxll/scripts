@@ -1,0 +1,3 @@
+#!/usr/bin/bash
+
+urxvt -tr -depth 32 -e cava
