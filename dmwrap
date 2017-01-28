@@ -1,0 +1,14 @@
+#!/usr/bin/bash
+
+font="-gohu-gohufont-medium-r-normal--11-80-100-100-c-60-iso10646-1"
+nb="#261D18"
+nf="#B39A8F"
+sb="#C77E64"
+sf="#261D18"
+w="860"
+h="18"
+x="83"
+y="5"
+opt="-fn "$font" -nb "$nb" -nf "$nf" -sb "$sb" -sf "$sf" -w "$w" -h "$h" -x "$x" -y "$y""
+
+dmenu $opt 

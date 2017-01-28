@@ -1,0 +1,24 @@
+#!/bin/sh
+set -- ddg gg yt imdb aw aur gh wh us pex wu flkr da reboot shutdown
+printf '%s\n' "$@" | dmwrap | {
+    read -r cmd arg || exit
+    case $cmd in
+        ddg)  "$BROWSER" 'https://duckduckgo.com/?q='"$arg"                                 ;;
+        gg)   "$BROWSER" 'https://encrypted.google.com/search?q='"$arg"                     ;;
+        yt)   "$BROWSER" 'https://www.youtube.com/results?search_query='"$arg"              ;;
+        imdb) "$BROWSER" 'http://www.imdb.com/find?q='"$arg"                                ;;
+        aw)   "$BROWSER" 'https://wiki.archlinux.org/?search='"$arg"                        ;;
+        aur)  "$BROWSER" 'https://aur.archlinux.org/packages/?O=0&K='"$arg"                 ;;
+        gh)   "$BROWSER" 'https://github.com/search?q='"$arg"                               ;;
+        wh)   "$BROWSER" 'https://alpha.wallhaven.cc/search?q='"$arg"                       ;;
+        us)   "$BROWSER" 'https://unsplash.com/search/'"$arg"                               ;;
+        pex)  "$BROWSER" 'https://www.pexels.com/search/'"$arg"                             ;;
+        wu)   "$BROWSER" 'http://www.wallpaperup.com/search/results/'"$arg"                 ;;
+        flkr) "$BROWSER" 'https://www.flickr.com/search/?text='"$arg"                       ;;
+        da)   "$BROWSER" 'http://www.deviantart.com/browse/all/?section=&global=1&q='"$arg" ;;
+
+        reboot)   systemctl reboot   ;;
+        shutdown) systemctl poweroff ;;
+    esac
+	cat $HOME/.cache/dmenu_run
+}
