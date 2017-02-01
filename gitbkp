@@ -22,6 +22,7 @@ case $1 in
 
 	$cph/.config/dunst/ $dotfiles/.config/
 	$cph/.config/herbstluftwm/ $dotfiles/.config/
+	$cph/.config/windowchef/ $dotfiles/.config/
 	rm -rf $HOME/.config/zenbu/__pycache__
 	$cph/.config/zenbu/ $dotfiles/.config/
 	$cph/.config/mpd/mpd.conf $dotfiles/.config/mpd/

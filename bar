@@ -13,29 +13,29 @@
 pkill lemonbar
 
 #COLORS
-fg="#B39A8F"
-bg="#261D18"
+fg="#B8B9B4"
+bg="#21211F"
 
-hint="#C77E64"
-nblk="#30251F"
-bblk="#3B2D26"
-nred="#975542"
-bred="#A15A46"
-ngrn="#B3725A"
-bgrn="#BD785F"
-nylw="#66493D"
-bylw="#705043"
-nblu="#AD795C"
-bblu="#B88062"
-nmag="#965744"
-bmag="#A15D49"
-ncyn="#4D372E"
-bcyn="#573E34"
-nwht="#A37A68"
-bwht="#AE826F"
+hint="#5E5E5C"
+nblk="#262624"
+bblk="#2B2B29"
+nred="#939490"
+bred="#989995"
+ngrn="#5E5E5C"
+bgrn="#636361"
+nylw="#B6B8B3"
+bylw="#BBBDB8"
+nblu="#727370"
+bblu="#777875"
+nmag="#D1D1CB"
+bmag="#D6D6D0"
+ncyn="#636361"
+bcyn="#696966"
+nwht="#AAABA6"
+bwht="#AFB0AB"
 
 #VARS
-font="-gohu-gohufont-medium-r-normal--11-80-100-100-c-60-iso10646-1"
+font="-lucy-tewi-medium-r-normal--11-90-100-100-c-60-iso10646-1"
 glyph="-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1"
 height=18
 border=5
@@ -144,7 +144,7 @@ NET() {
 }
 
 DATE() {
-    echo -n "%{B$bblk} %{F$fg}$(date "+%a %d/%m")%{F-} %{B-}"
+    echo -n "%{B$bblk} %{F$fg}$(date "+%d/%m")%{F-} %{B-}"
 }
 
 CLOCK() {

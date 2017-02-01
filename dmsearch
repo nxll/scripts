@@ -1,4 +1,6 @@
 #!/bin/sh
+#dmsearch - search aliases
+
 set -- ddg gg yt imdb aw aur gh wh us pex wu flkr da reboot shutdown
 printf '%s\n' "$@" | dmwrap | {
     read -r cmd arg || exit
@@ -20,5 +22,4 @@ printf '%s\n' "$@" | dmwrap | {
         reboot)   systemctl reboot   ;;
         shutdown) systemctl poweroff ;;
     esac
-	cat $HOME/.cache/dmenu_run
 }
