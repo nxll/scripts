@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 #dmwrap - dmenu wrapper
 
-font="-lucy-tewi-medium-r-normal--11-90-100-100-c-60-iso10646-1"
+font="-kakwa-kakwafont-medium-r-normal--12-120-72-72-c-60-iso8859-1"
 nb="#21211F"
 nf="#B8B9B4"
 sb="#5E5E5C"

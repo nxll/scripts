@@ -35,7 +35,7 @@ nwht="#AAABA6"
 bwht="#AFB0AB"
 
 #VARS
-font="-lucy-tewi-medium-r-normal--11-90-100-100-c-60-iso10646-1"
+font="-kakwa-kakwafont-medium-r-normal--12-120-72-72-c-60-iso8859-1"
 glyph="-wuncon-siji-medium-r-normal--10-100-75-75-c-80-iso10646-1"
 height=18
 border=5
@@ -154,7 +154,7 @@ CLOCK() {
 BAR() {
     #ADD ALL THE THINGS
     while true; do
-		buf="$(WRK) $(MUSIC)%{c}%{r}$(VOL) $(BAT) $(NET) $(DATE) $(CLOCK)" 
+		buf="$(MUSIC)%{c}%{r}$(VOL) $(BAT) $(NET) $(DATE) $(CLOCK)" 
 		echo "$buf"	
         sleep 0.1
     done | lemonbar -f $glyph \
