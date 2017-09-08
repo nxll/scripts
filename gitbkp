@@ -34,7 +34,7 @@ case $1 in
 	#PUSH
 	cd $dotfiles
 	git add .
-	git commit -m updates
+	git commit -m phresh
 	git push ghdots master
 	git push tdots master
 	notify-send "DOTFILES UP TO DATE"
@@ -46,7 +46,7 @@ case $1 in
 	#PUSH
 	cd $scripts
 	git add .
-	git commit -m updates
+	git commit -m inurb0x0r
 	git push ghscripts master
 	git push tscripts master
 	notify-send "SCRIPTS UP TO DATE"

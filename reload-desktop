@@ -38,13 +38,18 @@ s/.*color\([0-9][^:]*\):/\x1b]4;\1;/p
 
 getwm ()
 {
-    if [ -n "$DISPLAY" ]; then
-	id="$(xprop -root -notype | \awk '$1=="_NET_SUPPORTING_WM_CHECK:"{print $5}')"
-	wm="$(xprop -id "$id" -notype -f _NET_WM_NAME 8t)"
-	wm="${wm/*_NET_WM_NAME = }"
-	wm="${wm/\"}"
-	wm="${wm/\"*}"
-    fi
+	wms=( 2bwm 2wm 9wm aewm afterstep ahwm alopex amiwm antiwm awesome blackbox bspwm catwm clfswm ctwm cwm dminiwm dragonflywm dwm echinus \
+	euclid-wm evilpoison evilwm fluxbox flwm fvwm-crystal goomwwm hcwm herbstluftwm i3 icewm jwm karmen larswm lwm matwm2 mcwm monsterwm \
+	musca notion nwm olwm openbox oroborus pekwm ratpoison sapphire sawfish sscrotwm sithwm smallwm snapwm spectrwm stumpwm subtle tfwm tinywm tritium twm \
+	uwm vtwm w9wm weewm wind windowlab wm2 wmaker wmfs wmii wmx xfwm4 xmonad xoat yeahwm )
+
+	for wm in ${wms[@]}; do          # pgrep through wmname array
+	pid=$(pgrep -x -u $USER $wm) # if found, this wmname has running process
+		if [[ "$pid" ]]; then
+			echo "$wm" > /dev/null 2>&1
+			break
+		fi
+	done
 }
 
 # Main
@@ -110,7 +115,7 @@ main ()
 
 	# Reload Wallpaper
 	#$HOME/bin/ws -wallpaper
-	$HOME/bin/tt -r
+	$HOME/bin/tt -r > /dev/null 2>&1
 
 	# tmux
 	# Reload tmux colors

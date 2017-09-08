@@ -1,18 +1,19 @@
 #!/bin/sh
 #dmsearch - search aliases
-
-set -- ddg gg yt imdb aw aur gh wh us pex wu flkr da reboot shutdown
+set -- ddg gg yt sm imdb aw aur gh rdt wh us pex wu flkr da reboot shutdown
 printf '%s\n' "$@" | dmwrap | {
     read -r cmd arg || exit
     case $cmd in
         ddg)  "$BROWSER" 'https://duckduckgo.com/?q='"$arg"                                 ;;
         gg)   "$BROWSER" 'https://encrypted.google.com/search?q='"$arg"                     ;;
         yt)   "$BROWSER" 'https://www.youtube.com/results?search_query='"$arg"              ;;
+        sm)   "$BROWSER" 'https://solarmoviez.to/search/'"$arg"                             ;;
         imdb) "$BROWSER" 'http://www.imdb.com/find?q='"$arg"                                ;;
         aw)   "$BROWSER" 'https://wiki.archlinux.org/?search='"$arg"                        ;;
         aur)  "$BROWSER" 'https://aur.archlinux.org/packages/?O=0&K='"$arg"                 ;;
         gh)   "$BROWSER" 'https://github.com/search?q='"$arg"                               ;;
-        wh)   "$BROWSER" 'https://alpha.wallhaven.cc/search?q='"$arg"                       ;;
+        rdt)  "$BROWSER" 'https://www.reddit.com/r/unixporn/search?q='"$arg"                ;;
+		wh)   "$BROWSER" 'https://alpha.wallhaven.cc/search?q='"$arg"                       ;;
         us)   "$BROWSER" 'https://unsplash.com/search/'"$arg"                               ;;
         pex)  "$BROWSER" 'https://www.pexels.com/search/'"$arg"                             ;;
         wu)   "$BROWSER" 'http://www.wallpaperup.com/search/results/'"$arg"                 ;;

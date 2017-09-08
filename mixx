@@ -1,0 +1,120 @@
+#!/bin/bash
+
+# mixx.sh - puush-like functionality for mixtape.moe
+# Maintained by illu - Contact: illu@airmail.cc
+# Requires Maim (https://github.com/naelstrof/maim) for screenshots
+
+## OPTIONS
+
+# Get options
+while getopts fhsu: option; do
+    case $option in
+        f)ful=1;;
+        h)hel=1;;
+        s)sel=1;;
+        u)upl=1;;
+        *)exit;;
+    esac
+done
+
+# Fullscreen
+if [[ -z $mul ]]; then
+    if [[ ! -z $ful ]]; then
+        # Take fullscreen scrot
+        file=$(filename=$(date +%Y-%m-%d)_scrot.png ; maim $filename ; echo -n $filename)
+    fi
+else
+    echo "error: please only provide one option"
+    exit
+fi
+
+# Help
+if [[ -z $mul ]]; then
+    if [[ ! -z $hel ]]; then
+        # Display help
+        echo "-f            fullscreen"
+        echo "-h            show this message"
+        echo "-s            selection"
+        echo "-u file       file upload"
+        exit
+    fi
+else
+    echo "error: please only provide one option"
+    exit
+fi
+
+# Selection
+if [[ -z $mul ]]; then
+    if [[ ! -z $sel ]]; then
+        # Take selection scrot
+        file=$(filename=$(date +%Y-%m-%d)_scrot.png ; maim -s $filename ; echo -n $filename)
+    fi
+else
+    echo "error: please only provide one option"
+    exit
+fi
+
+# File
+if [[ -z $mul ]]; then
+    if [[ ! -z $upl ]]; then
+        # Get file
+        file=$(echo $2)
+        mul=1
+    fi
+else
+    echo "error: please only provide one option"
+    exit
+fi
+
+## UPLOADING
+
+# Upload it and grab the url
+output=$(curl --silent -sf files[]="@$file" "https://mixtape.moe/upload.php")
+if [[ ! -z $upl ]]; then
+    echo "uploading ${file}..."
+    n=0
+    while [[ $n -le 3 ]]; do
+        printf "\033[37m try #${n}..."
+        if [[ "${output}" =~ '"success":true,' ]]; then
+	    pomffile=$(echo "$output" | grep -Eo '"url":"[A-Za-z0-9]+.*",' | sed 's/"url":"//;s/",//' | sed 's/\\//g')
+            printf '\033[32m done.\n'
+            suc=1
+            break
+        else
+            printf '\033[31m failed.\n'
+            ((n = n +1))
+        fi
+    done
+    url=$pomffile
+else
+    echo "uploading ${file}..."
+    n=0
+    while [[ $n -le 3 ]]; do
+        printf "\033[37m try #${n}..."
+        if [[ "${output}" =~ '"success":true,' ]]; then
+            pomffile=$(echo "$output" | grep -Eo '"url":"[A-Za-z0-9]+.*",' | sed 's/"url":"//;s/",//' | sed 's/\\//g')
+            printf '\033[32m done.\n'
+            suc=1
+            break
+        else
+            printf '\033[31m failed.\n'
+            ((n = n +1))
+        fi
+    done
+    url=$pomffile
+    rm -f $file
+fi
+
+## OUTPUT
+if [[ ! -z $suc ]]; then
+    # Copy link to clipboard
+    echo -n $url | xclip -selection primary
+    echo -n $url | xclip -selection clipboard
+    # Log url to file
+    # Notify user of completion
+    notify-send "pomf!" "$url"
+    # Print message to the term
+    echo -e "\033[37m file has been uploaded: $url"
+else
+    echo -e "\033[37m file was not uploaded, did you specify a valid file?"
+fi
