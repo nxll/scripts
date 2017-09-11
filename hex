@@ -1,5 +1,5 @@
 #!/bin/bash
 echo -e "
- \e[0;30m"#2E2E33" \e[0;31m"#FA536D" \e[0;32m"#FA536D" \e[0;33m"#C3C5CC" \e[0;34m"#E5E5E5" \e[0;35m"#D6D6D6" \e[0;36m"#E1E2E4" \e[0;37m"#EFF0F2"
- \e[1;30m"#37373D" \e[1;31m"#FF556F" \e[1;32m"#FF788D" \e[1;33m"#D6D9E0" \e[1;34m"#F5F5F5" \e[1;35m"#EBEBEB" \e[1;36m"#E8E9EB" \e[1;37m"#FCFDFF"
+ \e[0;30m"#2E2E33" \e[0;31m"#FA536D" \e[0;32m"#FA536D" \e[0;33m"#C3C5CC" \e[0;34m"#E66C7F" \e[0;35m"#D6D6D6" \e[0;36m"#E1E2E4" \e[0;37m"#EFF0F2"
+ \e[1;30m"#37373D" \e[1;31m"#FF556F" \e[1;32m"#EB5973" \e[1;33m"#D6D9E0" \e[1;34m"#FF788D" \e[1;35m"#EBEBEB" \e[1;36m"#E8E9EB" \e[1;37m"#FCFDFF"
  "

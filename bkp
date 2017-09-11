@@ -14,10 +14,10 @@ if [ -d "$DEST"  ]; then
 	#SCRIPTS
 	$CMD $HOME/bin/ $DEST/bin/
 	#LOOSE
-	$CMD $HOME/tmp/arch_install_guide $DEST/loose_files/
-	$CMD $HOME/src/2bwm/config.h $DEST/loose_files/
-	$CMD $HOME/.git/ricing/resources $DEST/loose_files/
-	$CMD $HOME/.git/nxll.github.io/index.html $DEST/loose_files/
+	$CMD $HOME/tmp/arch_install_guide $DEST/loose/
+	$CMD $HOME/src/2bwm/config.h $DEST/loose/
+	$CMD $HOME/.git/ricing/resources $DEST/loose/
+	$CMD $HOME/.git/nxll.github.io/index.html $DEST/loose/
 	
 	notify-send "BACKUP COMPLETE"
 else
