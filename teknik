@@ -133,7 +133,7 @@ feedback() {
 
 	# Open url in browser
 	if [[ "$browser" == true  ]]; then
-		firefox "$url" &
+		google-chrome-stable "$url" &
 	fi
 
 	# Send notification
