@@ -37,7 +37,7 @@ case $1 in
 	git commit -m phresh
 	git push ghdots master
 	git push tdots master
-	notify-send "DOTFILES UP TO DATE"
+	notify-send "DOTFILES REPO UP TO DATE"
 	cd
 	;;
 -scripts)
@@ -49,7 +49,7 @@ case $1 in
 	git commit -m inurb0x0r
 	git push ghscripts master
 	git push tscripts master
-	notify-send "SCRIPTS UP TO DATE"
+	notify-send "SCRIPTS REPO UP TO DATE"
 	cd
 	;;
 *) echo "You modified me to push -dotfiles or -scripts" ;;

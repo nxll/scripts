@@ -1,14 +1,14 @@
 #!/usr/bin/bash
 #dmwrap - dmenu wrapper
 
-font="-uw-ttyp0-medium-r-normal--13-120-75-75-c-70-iso10646-1"
-nb="#242529"
-nf="#F2F3F5"
-sb="#FB546E"
-sf="#242529"
+font="-kakwa-kakwafont-medium-r-normal--12-120-72-72-c-60-iso8859-1"
+nb="#21211F"
+nf="#B8B9B4"
+sb="#5E5E5C"
+sf="#21211F"
 w="875"
 h="18"
-x="50"
+x="44"
 y="8"
 opt="-fn "$font" -nb "$nb" -nf "$nf" -sb "$sb" -sf "$sf" -w "$w" -h "$h" -x "$x" -y "$y""
 
