@@ -4,6 +4,7 @@
 cph="cp -r $HOME"
 dotfiles="$HOME/.git/dotfiles"
 scripts="$HOME/.git/scripts"
+gitio="$HOME/.git/nxll.github.io"
 
 case $1 in
 -dotfiles)
@@ -46,11 +47,19 @@ case $1 in
 	#PUSH
 	cd $scripts
 	git add .
-	git commit -m inurb0x0r
+	git commit -m phresh
 	git push ghscripts master
 	git push tscripts master
 	notify-send "SCRIPTS REPO UP TO DATE"
 	cd
 	;;
-*) echo "You modified me to push -dotfiles or -scripts" ;;
+-gitio)
+	#PUSH
+	cd $gitio
+	git add .
+	git commit -m phresh
+	git push gitio master
+	notify-send "GITIO UP TO DATE"
+	;;
+*) echo "You modified me to push -dotfiles, -scripts or -gitio" ;;
 esac
